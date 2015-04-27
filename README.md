@@ -10,7 +10,6 @@ To run the code on the front page of the [project's website][1].
 > cd roda_intro_code
 > bundle install
 ..................
-> bundle exec rspec
 > bundle exec rackup
 ```
 
