@@ -1,39 +1,42 @@
-require "roda"
+if $0 == __FILE__
 
-class App < Roda
-  #use Rack::Session::Cookie, :secret => ENV['SECRET']
+  require "roda"
 
-  route do |r|
-    # GET / request
-    r.root do
-      r.redirect "/hello"
-    end
+  class App < Roda
+    #use Rack::Session::Cookie, :secret => ENV['SECRET']
 
-    # /hello branch
-    r.on "hello" do
-      # Set variable for all routes in /hello branch
-      @greeting = 'Hello'
-
-      # GET /hello/world request
-      r.get "world" do
-        "#{@greeting} world!"
+    route do |r|
+      # GET / request
+      r.root do
+        r.redirect "/hello"
       end
 
-      # /hello request
-      r.is do
-        # GET /hello request
-        r.get do
-          "#{@greeting}!"
+      # /hello branch
+      r.on "hello" do
+        # Set variable for all routes in /hello branch
+        @greeting = 'Hello'
+
+        # GET /hello/world request
+        r.get "world" do
+          "#{@greeting} world!"
         end
 
-        # POST /hello request
-        r.post do
-          puts "Someone said #{@greeting}!"
-          r.redirect
+        # /hello request
+        r.is do
+          # GET /hello request
+          r.get do
+            "#{@greeting}!"
+          end
+
+          # POST /hello request
+          r.post do
+            puts "Someone said #{@greeting}!"
+            r.redirect
+          end
         end
       end
     end
   end
-end
 
-run App.app
+  run App.app
+end
