@@ -42,4 +42,9 @@ describe 'The Hello App' do
     post '/hello'
     expect(last_response.status).to eq 302
   end
+
+  it 'delete hello' do
+    delete '/hello'
+    expect(last_response.status).to eq 302
+  end
 end

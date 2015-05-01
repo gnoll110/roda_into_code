@@ -43,3 +43,4 @@ end
 if $0 == target
   run App.app
 end
+
