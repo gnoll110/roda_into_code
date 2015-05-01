@@ -10,11 +10,12 @@ To run the code on the home page of the [project's website][1].
 > cd roda_intro_code
 > bundle install
 ..................
+> bundle exec rspec
 > bundle exec rackup
 ```
 
-Note: I had intended to add some rspec, 
-but this can't be done until the main app class is refactored into a proper .rb file that can be required.
-That wouldn't be the one file example that Jeremy intended for the project's home page.
+Note: The target function in config.ru only handles rbenv at the moment.
+This is needed to allow rspec to test the Roda app, without causing to start up as well.
+Feel free to submit a pull request.
 
 [1]: http://roda.jeremyevans.net/
