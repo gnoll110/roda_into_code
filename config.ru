@@ -1,42 +1,45 @@
-if $0 == __FILE__
+require "roda"
 
-  require "roda"
+class App < Roda
+  #use Rack::Session::Cookie, :secret => ENV['SECRET']
 
-  class App < Roda
-    #use Rack::Session::Cookie, :secret => ENV['SECRET']
+  route do |r|
+    # GET / request
+    r.root do
+      r.redirect "/hello"
+    end
 
-    route do |r|
-      # GET / request
-      r.root do
-        r.redirect "/hello"
+    # /hello branch
+    r.on "hello" do
+      # Set variable for all routes in /hello branch
+      @greeting = 'Hello'
+
+      # GET /hello/world request
+      r.get "world" do
+        "#{@greeting} world!"
       end
 
-      # /hello branch
-      r.on "hello" do
-        # Set variable for all routes in /hello branch
-        @greeting = 'Hello'
-
-        # GET /hello/world request
-        r.get "world" do
-          "#{@greeting} world!"
+      # /hello request
+      r.is do
+        # GET /hello request
+        r.get do
+          "#{@greeting}!"
         end
 
-        # /hello request
-        r.is do
-          # GET /hello request
-          r.get do
-            "#{@greeting}!"
-          end
-
-          # POST /hello request
-          r.post do
-            puts "Someone said #{@greeting}!"
-            r.redirect
-          end
+        # POST /hello request
+        r.post do
+          puts "Someone said #{@greeting}!"
+          r.redirect
         end
       end
     end
   end
+end
 
+def target
+  File.join(Dir.home, '.rbenv/versions', RUBY_VERSION, 'bin/rackup')
+end
+
+if $0 == target
   run App.app
 end
