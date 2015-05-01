@@ -37,4 +37,9 @@ describe 'The Hello App' do
     get '/bye'
     expect(last_response.status).to eq 404
   end
+
+  it 'post hello' do
+    post '/hello'
+    expect(last_response.status).to eq 302
+  end
 end
