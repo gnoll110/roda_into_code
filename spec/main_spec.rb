@@ -45,6 +45,6 @@ describe 'The Hello App' do
 
   it 'delete hello' do
     delete '/hello'
-    expect(last_response.status).to eq 302
+    expect(last_response.status).to eq 404
   end
 end
