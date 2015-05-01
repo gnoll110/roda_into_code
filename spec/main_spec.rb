@@ -11,9 +11,13 @@ describe 'The Hello App' do
     App
   end
 
-  it 'say hello' do
+  it 'say /' do
     get '/'
-    #expect(body).to eq('{"ping":"pong"}')
+    expect(last_response.status).to eq 302
+  end
+
+  it 'say hello' do
+    get '/hello'
     expect(last_response.status).to eq 200
   end
 end
