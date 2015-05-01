@@ -32,4 +32,9 @@ describe 'The Hello App' do
     get '/hello/john'
     expect(last_response.status).to eq 404
   end
+
+  it 'say bye' do
+    get '/bye'
+    expect(last_response.status).to eq 404
+  end
 end
