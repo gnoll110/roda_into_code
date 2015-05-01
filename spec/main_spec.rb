@@ -19,11 +19,13 @@ describe 'The Hello App' do
   it 'say hello' do
     get '/hello'
     expect(last_response.status).to eq 200
+    expect(last_response.body).to eq('Hello!')
   end
 
   it 'say hello world' do
     get '/hello/world'
     expect(last_response.status).to eq 200
+    expect(last_response.body).to eq('Hello world!')
   end
 
   it 'say hello john' do
