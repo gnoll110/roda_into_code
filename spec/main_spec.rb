@@ -25,4 +25,9 @@ describe 'The Hello App' do
     get '/hello/world'
     expect(last_response.status).to eq 200
   end
+
+  it 'say hello john' do
+    get '/hello/john'
+    expect(last_response.status).to eq 404
+  end
 end
